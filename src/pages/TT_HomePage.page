@@ -1,0 +1,48 @@
+<apex:page controller="TT_HomePageController">
+	<apex:sectionHeader title="Test Manager" subtitle="Home"/>
+	<apex:form >
+	<apex:pageBlock title="Take a New Test" mode="maindetail">
+		<apex:repeat value="{!activeTests}" var="activeTest" id="theRepeat">
+			<apex:pageBlockSection >
+			<apex:commandLink action="{!startNewTest}" value="{!activeTest.Name}" id="activeTestLink">
+				<apex:param assignTo="{!testId}" name="testId" value="{!activeTest.Id}"/>
+			</apex:commandLink>
+			</apex:pageBlockSection>
+			
+	    </apex:repeat>
+		
+	</apex:pageBlock>
+
+
+	<apex:pageBlock title="Working Tests" mode="maindetail">
+		<apex:pageBlockTable value="{!myTests}" var="myTest">
+			<apex:column >
+				<apex:facet name="header">Test #</apex:facet>
+				<apex:commandLink action="{!resumeExistingTest}" value="{!myTest.Name}" id="existingTestLink">
+					<apex:param assignTo="{!resultId}" name="resultId" value="{!myTest.Id}"/>
+				</apex:commandLink>				
+			</apex:column>
+			<apex:column value="{!myTest.Test__r.Name}" />
+			<apex:column value="{!myTest.Started__c}" />
+
+		</apex:pageBlockTable>		
+	</apex:pageBlock>
+
+	<apex:pageBlock title="Completed Tests" mode="maindetail">
+		<apex:pageBlockTable value="{!completedTests}" var="myTest">
+			<apex:column >
+				<apex:facet name="header">Test #</apex:facet>
+				<apex:commandLink action="{!viewCompletedTest}" value="{!myTest.Name}" id="existingTestLink">
+					<apex:param assignTo="{!resultId}" name="resultId" value="{!myTest.Id}"/>
+				</apex:commandLink>				
+			</apex:column>
+			<apex:column value="{!myTest.Test__r.Name}" />
+			<apex:column value="{!myTest.Started__c}" />
+			<apex:column value="{!myTest.Completed__c}" />
+
+		</apex:pageBlockTable>		
+	</apex:pageBlock>
+
+	</apex:form>
+
+</apex:page>

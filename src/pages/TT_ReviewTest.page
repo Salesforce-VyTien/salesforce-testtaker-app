@@ -1,0 +1,59 @@
+<apex:page controller="TT_ReviewTestController">
+	<apex:sectionHeader title="Test Manager" subtitle="{!testHeader.Name}">
+	<div class="bPageTitle" style="padding-top: 0;">
+		<div class="ptBreadcrumb"><apex:outputLink value="{!$Page.TT_HomePage}" id="homeLink">&nbsp;«&nbsp;Back to Home</apex:outputLink>	</div>
+	</div>
+	</apex:sectionHeader>
+
+	<apex:form id="testAnswerForm">
+	<apex:pageBlock >
+	 
+	 <apex:outputText value="Question #{!testResultDetail.Question_Number__c}" escape="false" />
+	<p><apex:outputText value="{!testQuestion.Long_Question__c}" escape="false" /></p>
+
+	<apex:outputPanel id="singleSelectPanel" rendered="{!testQuestion.Question_Type__c=='Single Select'}">
+	 <apex:selectRadio layout="pageDirection" value="{!testAnswer}" disabled="true" readonly="true">
+		<apex:selectOptions value="{!testAnswerItems}"/>
+	 </apex:selectRadio>
+	</apex:outputPanel>
+
+	<apex:outputPanel id="multipleChoicePanel" rendered="{!testQuestion.Question_Type__c=='Multiple Choice'}">
+	 <apex:selectCheckboxes layout="pageDirection" value="{!testAnswerArray}" disabled="true" readonly="true">
+		<apex:selectOptions value="{!testAnswerItems}"/>
+	 </apex:selectCheckboxes>
+	</apex:outputPanel>
+
+
+
+	<apex:outputPanel id="essayAnswerPanel" rendered="{!testQuestion.Question_Type__c=='Essay Answer'}">
+	<apex:pageBlockSection >
+		<apex:inputTextarea id="questionResponse" label=""  value="{!testAnswer}" disabled="true" readonly="true" /><p/>
+	</apex:pageBlockSection>
+	</apex:outputPanel>
+
+
+
+	<apex:outputPanel id="textAnswerPanel" rendered="{!testQuestion.Question_Type__c=='Text Answer'}">
+	<apex:pageBlockSection >
+	<apex:inputText id="questionResponse" label="" value="{!testAnswer}"   disabled="true" /><p/>
+	</apex:pageBlockSection>
+	</apex:outputPanel>
+
+	<h2>Answers : (Score {!testResultDetail.Recorded_Score__c}/{!testResultDetail.Max_Score__c})</h2>
+	<ul>
+	<apex:repeat value="{!correctTestAnswers}" var="correctAnswer" id="theAnswer">
+	    <li><apex:outputText value="{!correctAnswer.Answer__c}" id="theValue"/></li>
+	</apex:repeat>
+	</ul>
+	<apex:outputPanel id="navigationPanel">
+	<apex:commandButton action="{!goToPreviousPage}" value="Previous Page" id="prevPageButton" rendered="{!hasPreviousQuestion}" />
+	<apex:commandButton action="{!goToNextPage}" value="Next Page" id="nextPageButton" rendered="{!hasNextQuestion}" />
+	<apex:commandButton action="{!submitTestForGrading}" value="Complete Test" id="completeTestButton" rendered="{!canCompleteTest}" />
+	</apex:outputPanel>
+
+	</apex:pageBlock>
+
+	</apex:form>    
+
+
+</apex:page>

@@ -1,0 +1,52 @@
+<apex:page controller="TT_TakeTestController">
+	<apex:sectionHeader title="Test Manager" subtitle="{!testHeader.Name}">
+	<div class="bPageTitle" style="padding-top: 0;">
+		<div class="ptBreadcrumb"><apex:outputLink value="{!$Page.TT_HomePage}" id="homeLink">&nbsp;«&nbsp;Back to Home</apex:outputLink>	</div>
+	</div>
+	</apex:sectionHeader>
+
+
+<apex:form id="testAnswerForm">
+<apex:pageBlock >
+<p>
+<apex:outputText value="Question #{!testResultDetail.Question_Number__c} {!testQuestion.Long_Question__c}" escape="false" />
+</p>
+
+<apex:outputPanel id="singleSelectPanel" rendered="{!testQuestion.Question_Type__c=='Single Select'}">
+ <apex:selectRadio layout="pageDirection" value="{!testAnswer}">
+	<apex:selectOptions value="{!testAnswerItems}"/>
+ </apex:selectRadio>
+</apex:outputPanel>
+
+<apex:outputPanel id="multipleChoicePanel" rendered="{!testQuestion.Question_Type__c=='Multiple Choice'}">
+ <apex:selectCheckboxes layout="pageDirection" value="{!testAnswerArray}">
+	<apex:selectOptions value="{!testAnswerItems}"/>
+ </apex:selectCheckboxes>
+</apex:outputPanel>
+
+
+
+<apex:outputPanel id="essayAnswerPanel" rendered="{!testQuestion.Question_Type__c=='Essay Answer'}">
+<apex:pageBlockSection >
+	<apex:inputTextarea id="questionResponse" label=""  value="{!testAnswer}"/><p/>
+</apex:pageBlockSection>
+</apex:outputPanel>
+
+
+
+<apex:outputPanel id="textAnswerPanel" rendered="{!testQuestion.Question_Type__c=='Text Answer'}">
+<apex:pageBlockSection >
+<apex:inputText id="questionResponse" label="" value="{!testAnswer}"/><p/>
+</apex:pageBlockSection>
+</apex:outputPanel>
+
+<apex:outputPanel id="navigationPanel">
+<apex:commandButton action="{!goToPreviousPage}" value="Previous Page" id="prevPageButton" rendered="{!hasPreviousQuestion}" />
+<apex:commandButton action="{!goToNextPage}" value="Next Page" id="nextPageButton" rendered="{!hasNextQuestion}" />
+<apex:commandButton action="{!submitTestForGrading}" value="Complete Test" id="completeTestButton" rendered="{!canCompleteTest}" />
+</apex:outputPanel>
+
+</apex:pageBlock>
+
+</apex:form>    
+</apex:page>

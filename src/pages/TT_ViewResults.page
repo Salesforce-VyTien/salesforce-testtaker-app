@@ -1,0 +1,30 @@
+<apex:page controller="TT_ViewResultsController">
+	<apex:sectionHeader title="Test Manager" subtitle="View Results">
+	<div class="bPageTitle" style="padding-top: 0;">
+		<div class="ptBreadcrumb"><apex:outputLink value="{!$Page.TT_HomePage}" id="homeLink">&nbsp;«&nbsp;Back to Home</apex:outputLink>	</div>
+	</div>
+	</apex:sectionHeader>
+	<p>You got {!recordedTestPoints} out of {!maximumTestPoints} points. Final Score : 
+	<apex:outputText value="{0, number, 0}" >
+		<apex:param value="{!finalTestScore}" />	
+	</apex:outputText>%</p>
+
+	<apex:form >
+	<apex:pageBlock title="Results" mode="maindetail">
+		<apex:pageBlockTable value="{!allTestResultDetails}" var="allTestResultDetail">
+			<apex:column headerValue="{!allTestResultDetail.Test_Question__c}">
+				<apex:facet name="header">Question</apex:facet>
+				<!-- <apex:outputLink value="/{!allTestResultDetail.Id}">{!allTestResultDetail.Test_Question__r.Short_Question__c}</apex:outputLink> -->
+				<apex:commandLink action="{!viewTestResult}" value="{!allTestResultDetail.Test_Question__r.Short_Question__c}" id="existingTestLink">
+					<apex:param assignTo="{!resultId}" name="resultId" value="{!allTestResultDetail.Id}"/>
+				</apex:commandLink>				
+
+			</apex:column>
+			<apex:column value="{!allTestResultDetail.Max_Score__c}" />
+			<apex:column value="{!allTestResultDetail.Recorded_Score__c}" />
+
+		</apex:pageBlockTable>		
+	</apex:pageBlock>
+	<apex:commandButton action="{!deleteTest}" value="Delete This Test" id="deleteTestButton" />
+	</apex:form>
+</apex:page>

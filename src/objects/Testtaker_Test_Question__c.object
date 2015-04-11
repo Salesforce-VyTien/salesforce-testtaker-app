@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>How_to_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>How to Score</label>
+        <picklist>
+            <controllingField>Question_Type__c</controllingField>
+            <picklistValues>
+                <fullName>All or Nothing</fullName>
+                <controllingFieldValues>Multiple Choice</controllingFieldValues>
+                <controllingFieldValues>Single Select</controllingFieldValues>
+                <controllingFieldValues>Text Answer</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Allow Partial Scoring</fullName>
+                <controllingFieldValues>Multiple Choice</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Don&apos;t  Score</fullName>
+                <controllingFieldValues>Essay Answer</controllingFieldValues>
+                <controllingFieldValues>Multiple Choice</controllingFieldValues>
+                <controllingFieldValues>Single Select</controllingFieldValues>
+                <controllingFieldValues>Text Answer</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Long_Question__c</fullName>
+        <description>Full version of the question</description>
+        <externalId>false</externalId>
+        <label>Long Question</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Maximum_Points__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Maximum Points</label>
+        <precision>4</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Points_Per_Answer__c</fullName>
+        <externalId>false</externalId>
+        <label>Points Per Answer</label>
+        <precision>4</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Question_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Question Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Single Select</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple Choice</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Text Answer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Essay Answer</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Short_Question__c</fullName>
+        <description>Short version of the question displayed on reports</description>
+        <externalId>false</externalId>
+        <label>Short Question</label>
+        <length>255</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Test__c</fullName>
+        <externalId>false</externalId>
+        <label>Test</label>
+        <referenceTo>Testtaker_Test__c</referenceTo>
+        <relationshipLabel>Test Questions</relationshipLabel>
+        <relationshipName>Test_Questions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Total_Choices__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Choices</label>
+        <precision>4</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Right_Answers__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Right Answers</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>Test Question</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Test__c</columns>
+        <columns>NAME</columns>
+        <columns>Short_Question__c</columns>
+        <columns>Question_Type__c</columns>
+        <columns>How_to_Score__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>Points_and_Scoring</fullName>
+        <columns>NAME</columns>
+        <columns>Test__c</columns>
+        <columns>Short_Question__c</columns>
+        <columns>How_to_Score__c</columns>
+        <columns>Maximum_Points__c</columns>
+        <columns>Points_Per_Answer__c</columns>
+        <columns>Question_Type__c</columns>
+        <columns>Total_Choices__c</columns>
+        <columns>Total_Right_Answers__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>Points and Scoring</label>
+    </listViews>
+    <nameField>
+        <displayFormat>Q-{00000}</displayFormat>
+        <label>Test Question Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Test Questions</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Long_Question_Required</fullName>
+        <active>true</active>
+        <description>A long question is required</description>
+        <errorConditionFormula>ISBLANK(TRIM(Long_Question__c))</errorConditionFormula>
+        <errorMessage>You must enter the long question</errorMessage>
+    </validationRules>
+</CustomObject>
