@@ -1,4 +1,15 @@
 public with sharing class TT_HomePageController {
+	
+    // All Instance variables
+    public Id testId{get; set;}
+    public Id resultId{get; set;}
+
+	private Testtaker_Test_Result__c newResult{get; set;}
+	private List<Testtaker_Test_Question__c> allTestQuestionList{get; set;}
+	private List<Testtaker_Test_Answer__c> allTestAnswersList{get; set;}
+    private List<Testtaker_Test_Result_Detail__c> allTestResultDetailList{get; set;}
+
+
     public TT_HomePageController() {
     	allTestQuestionList = [
     		SELECT 
@@ -17,18 +28,6 @@ public with sharing class TT_HomePageController {
 		];
     }
 
-    // All Instance variables
-    public Id testId{get; set;}
-
-    public Id resultId{get; set;}
-
-	private Testtaker_Test_Result__c newResult{get; set;}
-	
-	private List<Testtaker_Test_Question__c> allTestQuestionList{get; set;}
-
-	private List<Testtaker_Test_Answer__c> allTestAnswersList{get; set;}
-
-    private List<Testtaker_Test_Result_Detail__c> allTestResultDetailList{get; set;}
 
 
     // For Displaying Test
@@ -102,17 +101,7 @@ public with sharing class TT_HomePageController {
     		];
 
     	// Get all the questions
-    	/* Marked for deletion
-    	List<Testtaker_Test_Question__c> allTestQuestions = [
-    		SELECT 
-    			t.Total_Right_Answers__c, t.Total_Choices__c, t.Test__c, 
-    			t.Question_Type__c, t.Name, t.Id, t.How_to_Score__c 
-    		FROM 
-    			Testtaker_Test_Question__c t
-    		WHERE 
-    			t.Test__c =: testId
-    	];	
-		*/
+
 		List<Testtaker_Test_Question__c> allTestQuestions = new List<Testtaker_Test_Question__c>();
 		for(Testtaker_Test_Question__c thisTestQuestion : allTestQuestionList){
 			if(thisTestQuestion.Test__c == testId){

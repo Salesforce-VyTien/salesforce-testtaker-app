@@ -1,4 +1,22 @@
 public with sharing class TT_ReviewTestController {
+	private List<Testtaker_Test_Result_Detail__c> allQuestions;
+	private Testtaker_Test_Result__c testResultQuery{get; set;}
+    private Id testId{get; set;}
+    private Id testResultId{get; set;}
+    private Id testResultDetailId{get; set;}    
+	private Integer questionNumber{get; set;}
+	public String testAnswer{get; set;}
+
+	String[] testAnswerArray =  new String[]{};
+	List<Testtaker_Test_Answer__c> correctTestAnswers =  new List<Testtaker_Test_Answer__c>();
+
+
+    public Testtaker_Test_Question__c testQuestion{get;private set;}
+    public Testtaker_Test_Result_Detail__c testResultDetail{get;private set;}
+    public List<Testtaker_Test_Answer__c> testAnswers{get;private set;}
+	public Testtaker_Test__c testHeader{get;private set;}
+
+
 	public TT_ReviewTestController() {
 		// use the Instance Id
 		testResultId = ApexPages.currentPage().getParameters().get('instanceId');
@@ -107,6 +125,7 @@ public with sharing class TT_ReviewTestController {
 		}		
 	}
 
+
     public List<SelectOption> getTestAnswerItems() {
         List<SelectOption> options = new List<SelectOption>();
         for (Testtaker_Test_Answer__c t : testAnswers){
@@ -151,22 +170,6 @@ public with sharing class TT_ReviewTestController {
 	
 	}
 
-	private List<Testtaker_Test_Result_Detail__c> allQuestions;
-	private Testtaker_Test_Result__c testResultQuery{get; set;}
-    private Id testId{get; set;}
-    private Id testResultId{get; set;}
-    private Id testResultDetailId{get; set;}    
-	private Integer questionNumber{get; set;}
-	public String testAnswer{get; set;}
-
-	String[] testAnswerArray =  new String[]{};
-	List<Testtaker_Test_Answer__c> correctTestAnswers =  new List<Testtaker_Test_Answer__c>();
-
-
-    public Testtaker_Test_Question__c testQuestion{get;private set;}
-    public Testtaker_Test_Result_Detail__c testResultDetail{get;private set;}
-    public List<Testtaker_Test_Answer__c> testAnswers{get;private set;}
-	public Testtaker_Test__c testHeader{get;private set;}
 
 	public String[] getTestAnswerArray(){
 		if(this.testAnswer != '' && this.testAnswer !=null){
@@ -177,13 +180,11 @@ public with sharing class TT_ReviewTestController {
 		}
 		
 		return testAnswerArray;
-		// return this.testAnswer.split(',');
 	}
 
 	public List<Testtaker_Test_Answer__c> getCorrectTestAnswers(){
 		
 		return correctTestAnswers;
-		// return this.testAnswer.split(',');
 	}
 
 	public void setTestAnswerArray(String[] testAnswerArray){
